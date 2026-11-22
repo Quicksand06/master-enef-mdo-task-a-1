@@ -47,7 +47,7 @@ jobs:
               )
 
           subprocess.run(
-              [sys.executable, 'pareto.py', *map(str, inputs), '--log-y',
+              [sys.executable, 'pareto.py', *map(str, inputs), '--log-y', '--hide-all',
                '--output', str(output_dir / 'comparison.html')],
               check=True,
           )

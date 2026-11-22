@@ -34,7 +34,7 @@ python pareto.py "csv/AufgabeA Opt_L400 Design Table.csv" --log-y --output paret
 Compare several CSV files in one chart:
 
 ```powershell
-python pareto.py "csv/AufgabeA Opt_L400 Design Table.csv" "csv/AufgabeA Opt_L500 Design Table.csv" --log-y --output comparison.html
+python pareto.py "csv/AufgabeA Opt_L400_60_40.csv" "csv/AufgabeA Opt_L500_60_40.csv" --log-y --hide-all --output comparison.html
 ```
 
 Add `--hide-all` to display only Pareto points. Each run also writes a `<source-name>_pareto.csv` next to each input file.
@@ -43,7 +43,7 @@ Double-click the generated HTML to open it in a browser. Charts are interactive 
 
 ## GitHub Actions
 
-- **Generate Pareto HTML pages:** runs on every push to any branch, or manually. Reads all CSV files directly inside the root `csv/` folder and generates one HTML per file plus `comparison.html`, which overlays all datasets on the same axes with different colors, always with `--log-y`. In the workflow run, download the **pareto-html** artifact, extract the ZIP, and open the HTML files in a browser. The artifact is retained for 30 days.
+- **Generate Pareto HTML pages:** runs on every push to any branch, or manually. Reads all CSV files directly inside the root `csv/` folder and generates one HTML per file plus `comparison.html`, which overlays only the Pareto front from each dataset. All charts use `--log-y`. In the workflow run, download the **pareto-html** artifact, extract the ZIP, and open the HTML files in a browser. The artifact is retained for 30 days.
 - **Build Windows executable:** runs on pushes to `main`, or manually. Packages `beam_calculation.py` as a Windows executable. Download and extract **beam-calculation-windows-x64**, then run `beam_calculation.exe input.txt output.txt`; Python is not required.
 
 Commit `pareto.py`, the input `csv/` folder, and the workflow files so they are available to GitHub Actions.
